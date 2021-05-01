@@ -20,7 +20,7 @@
             android:layout_height="35dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_default"
-            android:background="@color/purple_500"/>
+            android:background="@color/purple_200"/>
 
         
         <LinearLayout
