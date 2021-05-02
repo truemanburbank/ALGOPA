@@ -9,7 +9,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
@@ -20,8 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+    Button mRegisterBtn;
 
     private QuestionsFragment questionsFragment;
     private ChattingFragment chattingFragment;
@@ -34,64 +36,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        viewPager = findViewById(R.id.view_pager);
-        tabLayout = findViewById(R.id.tab_layout);
+        mRegisterBtn = findViewById(R.id.register_btn);
 
-        questionsFragment = new QuestionsFragment();
-        chattingFragment = new ChattingFragment();
-        mentoFragment = new MentoFragment();
-        pointshopFragment = new PointshopFragment();
-        settingFragment = new SettingFragment();
-
-        tabLayout.setupWithViewPager(viewPager);
-
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
-        viewPagerAdapter.addFragment(questionsFragment, "Questions");
-        viewPagerAdapter.addFragment(chattingFragment, "Chatting");
-        viewPagerAdapter.addFragment(mentoFragment, "Mentoring");
-        viewPagerAdapter.addFragment(pointshopFragment, "PointShop");
-        viewPagerAdapter.addFragment(settingFragment, "Setting");
-        viewPager.setAdapter(viewPagerAdapter);
-
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_baseline_contact_support_24);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_baseline_question_answer_24);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_baseline_people_24);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_baseline_shopping_bag_24);
-        tabLayout.getTabAt(4).setIcon(R.drawable.ic_baseline_settings_24);
-    }
-
-    private class ViewPagerAdapter extends FragmentPagerAdapter {
-
-        private List<Fragment> fragments = new ArrayList<>();
-        private List<String> fragmentTitle = new ArrayList<>();
-
-        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-            super(fm, behavior);
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            fragments.add(fragment);
-            fragmentTitle.add(title);
-        }
-
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return fragmentTitle.get(position);
-        }
+        mRegisterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                Intent intent = new Intent(getApplication(), DashboardActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

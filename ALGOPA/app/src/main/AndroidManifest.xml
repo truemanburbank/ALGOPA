@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ALGOPA">
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".DashboardActivity"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".ChatActivity"
+            android:theme="@style/AppThemeNo"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
