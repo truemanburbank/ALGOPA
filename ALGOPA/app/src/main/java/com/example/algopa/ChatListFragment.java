@@ -15,11 +15,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChatListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.algopa.Adapters.AdapterUsers;
+
 public class ChatListFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -45,6 +42,7 @@ public class ChatListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.users_recycleView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return view;
     }
 
