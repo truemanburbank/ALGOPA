@@ -15,6 +15,7 @@ import com.example.algopa.R;
 import com.example.algopa.models.ModelChat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.List;

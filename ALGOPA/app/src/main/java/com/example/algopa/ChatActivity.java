@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +52,8 @@ public class ChatActivity extends AppCompatActivity {
     //for checking if use has seen message or not
     ValueEventListener seenListener;
     DatabaseReference userRefForSeen;
+
+    DataSnapshot dataSnapshot;
 
     List<ModelChat> chatList;
     AdapterChat adapterChat;
@@ -114,11 +117,11 @@ public class ChatActivity extends AppCompatActivity {
                     nameTv.setText(name);
                     try {
                         //image received, set it to imageview in toolbar
-                        Picasso.get().load(hisImage).placeholder(R.drawable.ic_default_img_white).info(profileIv);
+                        Picasso.get().load(hisImage).placeholder(R.drawable.ic_default).into(profileIv);
                     }
                     catch (Exception e) {
                         //there is exception getting picture, set default picture
-                        Picasso.get().load(ic_default_img_white).info(profileIv);
+                        Picasso.get().load(R.drawable.ic_default).into(profileIv);
                     }
                 }
             }
@@ -258,7 +261,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onPause();
         userRefForSeen.removeEventListener(seenListener);
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -279,5 +282,6 @@ public class ChatActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }
 
