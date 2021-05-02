@@ -7,7 +7,6 @@
     android:background="@color/F1EDED"
     tools:context=".ChatActivity">
 
-    <!--RecyclerView-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -19,18 +18,19 @@
             android:id="@+id/proifleIv"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:background="@color/purple_200"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_default" />
+            android:src="@drawable/ic_default"
+            android:background="@color/purple_200"
+            />
 
-
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginLeft="20dp">
             <!--Receiver name-->
             <TextView
                 android:id="@+id/nameTv"
@@ -39,7 +39,7 @@
                 android:text="His Name"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
             <!--Receiver status i.e. online or offline
             will implement later-->
             <TextView
@@ -48,11 +48,12 @@
                 android:layout_height="wrap_content"
                 android:text="online"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
+    <!--RecyclerView-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recyclerView"
         android:layout_width="match_parent"

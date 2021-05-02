@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.algopa.Adapters.AdapterChat;
 import com.example.algopa.models.ModelChat;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,12 +61,13 @@ public class ChatActivity extends AppCompatActivity {
     String myUid;
     String hisImage;
 
-
+   // FirebaseApp.initializeApp();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
 
         //init views
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -92,14 +94,15 @@ public class ChatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         hisUid = intent.getStringExtra("hisUid");
 
+
         //firebase auth instance
         firebaseAuth = FirebaseAuth.getInstance();
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
+       // firebaseDatabase = FirebaseDatabase.getInstance();
         userDbRef = firebaseDatabase.getReference("Users");
 
         //search user to get that user's info
-        Query userQuery = userDbRef.orderByChild("uid").equalTo(hisUid);
+       Query userQuery = userDbRef.orderByChild("uid").equalTo(hisUid);
         //get user picture and name
         userQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -121,6 +124,8 @@ public class ChatActivity extends AppCompatActivity {
                         Picasso.get().load(ic_default_img_white).info(profileIv);
                     }
                 }
+
+
             }
 
             @Override
@@ -128,6 +133,8 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         //click button to send message
         sendBtn.setOnClickListener(new View.OnClickListener() {
