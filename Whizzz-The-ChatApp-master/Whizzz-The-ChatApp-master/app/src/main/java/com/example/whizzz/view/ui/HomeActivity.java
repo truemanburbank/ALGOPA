@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
                     //  Toast.makeText(HomeActivity.this, "Welcome back " + username + ".", Toast.LENGTH_SHORT).show();
                     currentUserName.setText(username);
                     if (imageUrl.equals("default")) {
-                        profileImage.setImageResource(R.drawable.sample_img);
+                        profileImage.setImageResource(R.drawable.unnamed);
                     } else {
                         Glide.with(getApplicationContext()).load(imageUrl).into(profileImage);
                     }

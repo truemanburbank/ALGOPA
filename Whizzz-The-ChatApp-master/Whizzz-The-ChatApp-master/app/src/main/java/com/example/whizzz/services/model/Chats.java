@@ -1,11 +1,11 @@
 package com.example.whizzz.services.model;
 
 public class Chats {
-    private String receiverId;
-    private String senderId;
-    private String message;
-    private String timestamp;
-    private boolean seen;
+    private String receiverId; // 받는이
+    private String senderId; // 보낸이
+    private String message; // 메시지 내용
+    private String timestamp; // 시간
+    private boolean seen; // 봤는지 안 봤는지
 
     public Chats(String receiverId, String senderId, String message, String timestamp, boolean seen) {
         this.receiverId = receiverId;

@@ -70,7 +70,7 @@ public class UserFragmentAdapter extends RecyclerView.Adapter<UserFragmentAdapte
             holder.iv_status_user_list.setVisibility(View.GONE);
         }
         if (imageUrl.equals("default")) {
-            holder.iv_profile_image.setImageResource(R.drawable.sample_img);
+            holder.iv_profile_image.setImageResource(R.drawable.unnamed);
         } else {
             Glide.with(context).load(imageUrl).into(holder.iv_profile_image);
         }

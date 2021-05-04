@@ -161,7 +161,7 @@ public class MessageActivity extends AppCompatActivity {
 
                 tv_profile_user_name.setText(profileUserNAme);
                 if (profileImageURL.equals("default")) {
-                    iv_profile_image.setImageResource(R.drawable.sample_img);
+                    iv_profile_image.setImageResource(R.drawable.unnamed);
                 } else {
                     Glide.with(getApplicationContext()).load(profileImageURL).into(iv_profile_image);
                 }

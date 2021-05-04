@@ -1,42 +1,137 @@
 {
   "project_info": {
-    "project_number": "16626684816",
-    "firebase_url": "https://whizzz-cad4a.firebaseio.com",
-    "project_id": "whizzz-cad4a",
-    "storage_bucket": "whizzz-cad4a.appspot.com"
+    "project_number": "1037705746307",
+    "firebase_url": "https://algopa-20ea2-default-rtdb.firebaseio.com",
+    "project_id": "algopa-20ea2",
+    "storage_bucket": "algopa-20ea2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:16626684816:android:f835cbf3f585a6fce55915",
+        "mobilesdk_app_id": "1:1037705746307:android:d86ed58a84c3ae464748b6",
         "android_client_info": {
-          "package_name": "com.example.whizzz"
+          "package_name": "com.example.algopa"
         }
       },
       "oauth_client": [
         {
-          "client_id": "16626684816-k56h3udk6m0jk6jvqr98qp8f7qepk5uj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.whizzz",
-            "certificate_hash": "1260421f44e8231eece5cc9fe81113ba6c6cc1f0"
-          }
-        },
-        {
-          "client_id": "16626684816-g4666b9rsu4h4dfh0vg58uun0kn0697l.apps.googleusercontent.com",
+          "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBkryscD9YEZSPH3EAdEc42DbZFAz_iS_s"
+          "current_key": "AIzaSyDadWRtzrOChhuTYknpHX2_3GaDW3xqvMQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "16626684816-g4666b9rsu4h4dfh0vg58uun0kn0697l.apps.googleusercontent.com",
+              "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037705746307:android:f2d9bf6eccc803b04748b6",
+        "android_client_info": {
+          "package_name": "com.example.whizzz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDadWRtzrOChhuTYknpHX2_3GaDW3xqvMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037705746307:android:c2e4398b53c6266d4748b6",
+        "android_client_info": {
+          "package_name": "com.project.algopa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037705746307-2e099lpaju62kg9omt288iinp8o18a9t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.algopa",
+            "certificate_hash": "fdc1160a9a6a3cc7bdb6b3f8462bc185b0b93719"
+          }
+        },
+        {
+          "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDadWRtzrOChhuTYknpHX2_3GaDW3xqvMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037705746307:android:06d50260b623b9994748b6",
+        "android_client_info": {
+          "package_name": "com.swp.algopa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037705746307-p1sajb5j13kah2h0k3mq5vfap5ipd18b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.swp.algopa",
+            "certificate_hash": "fdc1160a9a6a3cc7bdb6b3f8462bc185b0b93719"
+          }
+        },
+        {
+          "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDadWRtzrOChhuTYknpHX2_3GaDW3xqvMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037705746307-mu237p1j6nkrnpu4rsqlvjkpblclvvac.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

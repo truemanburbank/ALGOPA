@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/white" />
+    <item android:drawable="@color/black" />
     <item
-        android:drawable="@drawable/ic_splash_background_svg"
-        android:gravity="center" />
+        android:drawable="@drawable/logo_transparent"
+        android:gravity="center"
+        android:height="350dp"
+        android:width="350dp"/>
 
 </layer-list>

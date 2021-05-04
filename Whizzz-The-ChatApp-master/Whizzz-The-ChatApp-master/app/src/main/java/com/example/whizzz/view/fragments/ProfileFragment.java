@@ -92,7 +92,7 @@ public class ProfileFragment extends Fragment {
                     tv_currentUserName_profile_fragment.setText(username);
                     tv_profile_fragment_bio.setText(userBio);
                     if (imageUrl.equals("default")) {
-                        iv_profileImage_profile_fragment.setImageResource(R.drawable.sample_img);
+                        iv_profileImage_profile_fragment.setImageResource(R.drawable.unnamed);
                     } else {
                         Glide.with(context).load(imageUrl).into(iv_profileImage_profile_fragment);
                     }
