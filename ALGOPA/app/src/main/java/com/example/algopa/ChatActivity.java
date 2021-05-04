@@ -71,7 +71,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
+        FirebaseApp.initializeApp(this);
         //init views
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
