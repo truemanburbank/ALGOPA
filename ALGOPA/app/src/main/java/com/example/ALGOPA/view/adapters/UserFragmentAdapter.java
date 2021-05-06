@@ -2,6 +2,8 @@ package com.example.ALGOPA.view.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.net.ConnectivityManagerCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.Users;
 import com.example.ALGOPA.view.fragments.BottomSheetProfileDetailUser;
+import com.example.ALGOPA.view.ui.HomeActivity;
 import com.example.ALGOPA.view.ui.MessageActivity;
 
 import java.io.IOException;
@@ -103,10 +107,12 @@ public class UserFragmentAdapter extends RecyclerView.Adapter<UserFragmentAdapte
     }
 
 
-    public boolean isNetworkConnected() throws InterruptedException, IOException {
+   public boolean isNetworkConnected() throws InterruptedException, IOException {
         final String command = "ping -c 1 google.com";
         return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
+
+
 
     public class UserFragmentHolder extends RecyclerView.ViewHolder {
         CircleImageView iv_profile_image;
