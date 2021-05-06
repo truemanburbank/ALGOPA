@@ -20,6 +20,8 @@ import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.Users;
 import com.example.ALGOPA.view.adapters.ViewPagerAdapter;
 import com.example.ALGOPA.view.fragments.ChatFragment;
+import com.example.ALGOPA.view.fragments.MentoringFragment;
+import com.example.ALGOPA.view.fragments.PointShopFragment;
 import com.example.ALGOPA.view.fragments.ProfileFragment;
 import com.example.ALGOPA.view.fragments.UserFragment;
 import com.example.ALGOPA.viewModel.DatabaseViewModel;
@@ -62,7 +64,10 @@ public class HomeActivity extends AppCompatActivity {
 
         viewPagerAdapter.addFragment(new ChatFragment(this), "Chats");
         viewPagerAdapter.addFragment(new UserFragment(this), "Users");
+        viewPagerAdapter.addFragment(new MentoringFragment(this), "Mento");
+        viewPagerAdapter.addFragment(new PointShopFragment(this), "Shop");
         viewPagerAdapter.addFragment(new ProfileFragment(this), "Profile");
+
 
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -118,7 +123,11 @@ public class HomeActivity extends AppCompatActivity {
                     getUserAuthToSignOut();
                     Toast.makeText(HomeActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
                     return true;
-                } else {
+                }
+                if (item.getItemId() == R.id.action_create_group) {
+                    startActivity(new Intent(HomeActivity.this, GroupCreateActivity.class));
+                    return true;
+                }else {
                     return false;
                 }
             }

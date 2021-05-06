@@ -102,9 +102,12 @@ public class UserFragmentAdapter extends RecyclerView.Adapter<UserFragmentAdapte
     }
 
 
+
     private boolean isNetworkConnected() { ConnectivityManager cm;
         cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected(); }
+
+
 
     public class UserFragmentHolder extends RecyclerView.ViewHolder {
         CircleImageView iv_profile_image;
