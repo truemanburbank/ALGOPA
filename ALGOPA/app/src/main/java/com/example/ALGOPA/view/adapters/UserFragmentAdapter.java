@@ -2,6 +2,7 @@ package com.example.ALGOPA.view.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static androidx.core.content.ContextCompat.getSystemService;
 
 public class UserFragmentAdapter extends RecyclerView.Adapter<UserFragmentAdapter.UserFragmentHolder> {
 
@@ -56,15 +59,11 @@ public class UserFragmentAdapter extends RecyclerView.Adapter<UserFragmentAdapte
         String user_status = users.getStatus();
 
         if (isChat) {
-            try {
 
-                if (user_status.contains("online") && isNetworkConnected()) {
-                    holder.iv_status_user_list.setBackgroundResource(R.drawable.online_status);
-                } else {
-                    holder.iv_status_user_list.setBackgroundResource(R.drawable.offline_status);
-                }
-            } catch (InterruptedException | IOException e) {
-                e.printStackTrace();
+            if (user_status.contains("online") && isNetworkConnected()) {
+                holder.iv_status_user_list.setBackgroundResource(R.drawable.online_status);
+            } else {
+                holder.iv_status_user_list.setBackgroundResource(R.drawable.offline_status);
             }
         } else {
             holder.iv_status_user_list.setVisibility(View.GONE);
@@ -103,10 +102,18 @@ public class UserFragmentAdapter extends RecyclerView.Adapter<UserFragmentAdapte
     }
 
 
-    public boolean isNetworkConnected() throws InterruptedException, IOException {
-        final String command = "ping -c 1 google.com";
-        return Runtime.getRuntime().exec(command).waitFor() == 0;
+//    public boolean isNetworkConnected() throws InterruptedException, IOException {
+//        final String command = "ping -c 1 google.com";
+//        return Runtime.getRuntime().exec(command).waitFor() == 0;
+//    }
+
+    private boolean isNetworkConnected() { ConnectivityManager cm;
+        cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected(); }
+
+    private Object getSystemService(String connectivityService) {
     }
+
 
     public class UserFragmentHolder extends RecyclerView.ViewHolder {
         CircleImageView iv_profile_image;

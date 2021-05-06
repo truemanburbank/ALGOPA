@@ -2,6 +2,7 @@ package com.example.ALGOPA.view.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -149,14 +150,10 @@ public class MessageActivity extends AppCompatActivity {
                 bio = user.getBio();
                 user_status = user.getStatus();
 
-                try {
-                    if (user_status.contains("online") && isNetworkConnected()) {
-                        iv_user_status_message_view.setBackgroundResource(R.drawable.online_status);
-                    } else {
-                        iv_user_status_message_view.setBackgroundResource(R.drawable.offline_status);
-                    }
-                } catch (InterruptedException | IOException e) {
-                    e.printStackTrace();
+                if (user_status.contains("online") && isNetworkConnected()) {
+                    iv_user_status_message_view.setBackgroundResource(R.drawable.online_status);
+                } else {
+                    iv_user_status_message_view.setBackgroundResource(R.drawable.offline_status);
                 }
 
                 tv_profile_user_name.setText(profileUserNAme);
@@ -192,10 +189,14 @@ public class MessageActivity extends AppCompatActivity {
     }
 
 
-    public boolean isNetworkConnected() throws InterruptedException, IOException {   //check internet connectivity
-        final String command = "ping -c 1 google.com";
-        return Runtime.getRuntime().exec(command).waitFor() == 0;
-    }
+//    public boolean isNetworkConnected() throws InterruptedException, IOException {   //check internet connectivity
+//        final String command = "ping -c 1 google.com";
+//        return Runtime.getRuntime().exec(command).waitFor() == 0;
+//    }
+
+    private boolean isNetworkConnected() { ConnectivityManager cm;
+        cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected(); }
 
     private void fetchChatFromDatabase(String myId, String senderId) {
         databaseViewModel.fetchChatUser();
