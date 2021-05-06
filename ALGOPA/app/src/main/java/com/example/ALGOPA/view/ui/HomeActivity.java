@@ -118,7 +118,11 @@ public class HomeActivity extends AppCompatActivity {
                     getUserAuthToSignOut();
                     Toast.makeText(HomeActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
                     return true;
-                } else {
+                }
+                if (item.getItemId() == R.id.action_create_group) {
+                    startActivity(new Intent(HomeActivity.this, GroupCreateActivity.class));
+                    return true;
+                }else {
                     return false;
                 }
             }
