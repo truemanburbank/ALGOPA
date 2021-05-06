@@ -102,17 +102,11 @@ public class UserFragmentAdapter extends RecyclerView.Adapter<UserFragmentAdapte
     }
 
 
-//    public boolean isNetworkConnected() throws InterruptedException, IOException {
-//        final String command = "ping -c 1 google.com";
-//        return Runtime.getRuntime().exec(command).waitFor() == 0;
-//    }
 
     private boolean isNetworkConnected() { ConnectivityManager cm;
-        cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected(); }
 
-    private Object getSystemService(String connectivityService) {
-    }
 
 
     public class UserFragmentHolder extends RecyclerView.ViewHolder {
