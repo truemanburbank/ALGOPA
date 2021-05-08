@@ -16,6 +16,13 @@
         >
     </item>
 
+    <item
+        android:id="@+id/action_create_group"
+        android:title="Create Group"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_creategroup"
+        >
+    </item>
 
 
 </menu>
