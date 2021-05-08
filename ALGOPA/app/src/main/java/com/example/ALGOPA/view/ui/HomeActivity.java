@@ -127,6 +127,10 @@ public class HomeActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.action_create_group) {
                     startActivity(new Intent(HomeActivity.this, GroupCreateActivity.class));
                     return true;
+                }
+                if (item.getItemId() == R.id.action_add_post) {
+                    startActivity(new Intent(HomeActivity.this, AddPostActivity.class));
+                    return true;
                 }else {
                     return false;
                 }
