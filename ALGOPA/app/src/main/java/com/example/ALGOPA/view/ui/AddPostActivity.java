@@ -59,8 +59,8 @@ public class AddPostActivity extends AppCompatActivity {
     private static final int IMAGE_PICK_CAMERA_CODE = 300;
     private static final int IMAGE_PICK_GALLERY_CODE = 400;
 
-    //permissons array
-    String[] cameraPermissons;
+    //permissions array
+    String[] cameraPermissions;
     String[] storagePermissions;
 
     //views
@@ -89,7 +89,7 @@ public class AddPostActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //init permissions arrays
-        cameraPermissons = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         pd = new ProgressDialog(this);
@@ -309,6 +309,8 @@ public class AddPostActivity extends AppCompatActivity {
                 }
             }
         });
+        //create and show dialog
+        builder.create().show();
     }
 
     private void pickFromGallery() {
@@ -349,7 +351,7 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     private  void requestCameraPermission(){
-        ActivityCompat.requestPermissions(this, cameraPermissons, CAMERA_REQUEST_CODE);
+        ActivityCompat.requestPermissions(this, cameraPermissions, CAMERA_REQUEST_CODE);
     }
 
     @Override
@@ -442,8 +444,8 @@ public class AddPostActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //this method will be called after picking image from camera ot gallery
-        if(requestCode == RESULT_OK){
+        //this method will be called after picking image from camera or gallery
+        if(resultCode == RESULT_OK){
             if(requestCode == IMAGE_PICK_GALLERY_CODE){
                 image_url = data.getData();
 
