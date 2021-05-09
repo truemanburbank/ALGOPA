@@ -43,4 +43,120 @@
     <string name="enter_your_email">Enter your email</string>
     <string name="reset">RESET</string>
     <string name="by_clicking_reset_you_will_receive_an_email_n_to_reset_your_password">By clicking RESET, you will receive an email \n to reset your password.</string>
-</resources>
+
+<string-array name = "spinner_do">
+<item >없음 </item>
+<item>인문대학</item>
+<item>사회과학대학</item>
+<item>자연과학대학</item>
+<item>경영대학</item>
+<item>공과대학</item>
+<item>농업생명과학대학</item>
+<item>법과대학</item>
+<item>사범대학</item>
+<item>수의과대학</item>
+<item>의과대학</item>
+<item>해양과학대학</item>
+
+</string-array>
+
+<string-array name = "spinner_do_false">
+<item>없음</item>
+</string-array>
+
+<string-array name = "spinner_do_College_of_Humanities">
+<item>국어국문학과</item>
+<item>독어독문학과</item>
+<item>러시아학과</item>
+<item>불어불문학과</item>
+<item>사학과</item>
+<item>영어영문학과</item>
+<item>중어중문학과</item>
+<item>철학과</item>
+<item>한문학과</item>
+<item>민속무용학과</item>
+</string-array>
+<string-array name = "spinner_do_Social">
+<item>경제학과</item>
+<item>사회복지학과</item>
+<item>사회학과</item>
+<item>심리학과</item>
+<item>정치외교학과</item>
+<item>행정학과</item>
+</string-array>
+
+<string-array name = "spinner_do_Natural_science">
+<item>생명과학부</item>
+<item>물리학과</item>
+<item>수학과</item>
+<item>식품영양학과</item>
+<item>의류학과</item>
+<item>정보통계학과</item>
+<item>지질과학과</item>
+<item>컴퓨터과학과</item>
+<item>화학과</item>
+</string-array>
+
+<string-array name = "spinner_do_operation">
+<item>경영학과</item>
+<item>경영정보학과</item>
+<item>국제통상학과</item>
+<item>회계학과</item>
+<item>산업경영학과</item>
+</string-array>
+
+<string-array name = "spinner_do_College_of_Engineering">
+<item>건축공학과</item>
+<item>건축학과</item>
+<item>도시공학과</item>
+<item>건축공학과</item>
+<item>건축학과</item>
+<item>반도체공학과</item>
+<item>전기공학과</item>
+<item>전자공학과</item>
+</string-array>
+
+<string-array name = "spinner_do_Agriculture">
+<item>식품자원경제학과</item>
+<item>산림환경자원학과</item>
+<item>환경재료과학전공</item>
+<item>농업식물과학과</item>
+<item>식물의학과</item>
+<item>생물산업기계공학전공</item>
+</string-array>
+
+<string-array name = "spinner_do_method">
+<item>법학과</item>
+</string-array>
+
+<string-array name = "spinner_do_Normal_University">
+<item>교육학과</item>
+<item>윤리교육과</item>
+<item>국어교육과</item>
+<item>역사교육과</item>
+<item>영어교육과</item>
+<item>체육교욱과</item>
+<item>화학교육과</item>
+</string-array>
+
+
+<string-array name = "spinner_do_Veterinary">
+<item>수의학과</item>
+<item>수의예과</item>
+</string-array>
+
+<string-array name = "spinner_do_Pre_medicine">
+<item>의예과</item>
+<item>의학과</item>
+</string-array>
+
+<string-array name = "spinner_do_Department_of_Oceanography">
+<item>해양토목공학과</item>
+<item>해양환경공학과</item>
+<item>조선해양공학과</item>
+<item>기계시스템공학과</item>
+<item>해양경찰시스템학과</item>
+<item>에너지기계공학과</item>
+</string-array>
+
+    </resources>
