@@ -142,6 +142,37 @@
                 android:textColorHint="#A9A8BC"
                 android:textCursorDrawable="@color/white"
                 android:textSize="18sp" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/grey"
+                android:padding="25dp"
+                android:paddingStart="40dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="40dp"
+                android:paddingEnd="40dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="40dp"
+                android:textSize="8sp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/grey"
+                android:padding="25dp"
+                android:paddingStart="40dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="40dp"
+                android:paddingEnd="40dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="40dp"
+                android:spinnerMode="dropdown" />
 
             <Button
                 android:id="@+id/btn_signin"

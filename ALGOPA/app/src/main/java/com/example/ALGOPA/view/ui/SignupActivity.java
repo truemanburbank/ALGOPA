@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +31,9 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
-
+    ArrayAdapter<CharSequence> adspin1, adspin2;
+    String choice_do="";
+    String choice_se="";
     EditText et_usernameSignIn;
     EditText et_emailIdSignIn;
     EditText et_pwdSignIn;
@@ -52,6 +57,217 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         init();
         listeners();
+        final Spinner spin1 = (Spinner)findViewById(R.id.spinner);
+        final Spinner spin2 = (Spinner)findViewById(R.id.spinner2);
+
+        adspin1 = ArrayAdapter.createFromResource(this,R.array.spinner_do, android.R.layout.simple_spinner_dropdown_item);
+        adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spin1.setAdapter(adspin1);
+        spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long I) {
+                if(adspin1.getItem(i).equals("없음")){
+                    choice_do = "없음";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this, R.array.spinner_do_false, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("인문대학")){
+                    choice_do = "인문대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_College_of_Humanities, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("사회과학대학")){
+                    choice_do = "사회과학대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Social, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("자연과학대학")){
+                    choice_do = "자연과학대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Natural_science, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("경영대학")){
+                    choice_do = "경영대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_operation, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("공과대학")){
+                    choice_do = "공과대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_College_of_Engineering, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("농업생명과학대학")){
+                    choice_do = "농업생명과학대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Agriculture, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("법과대학")){
+                    choice_do = "법과대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_method, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("사범대학")){
+                    choice_do = "사범대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Normal_University, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("수의과학대학")){
+                    choice_do = "수의과학대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Veterinary, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("의과대학")){
+                    choice_do = "의과대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Pre_medicine, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }else if (adspin1.getItem(i).equals("해양대학")){
+                    choice_do = "해양대학";
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Department_of_Oceanography, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int i, long I) {
+                            choice_se = adspin2.getItem(i).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void listeners() {
