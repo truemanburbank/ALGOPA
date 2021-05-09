@@ -45,37 +45,40 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
-public class AddPostActivity extends AppCompatActivity {
 
-    FirebaseAuth firebaseAuth;
-    DatabaseReference userDbRef;
-
-    ActionBar actionBar;
 
     //permissions constants
-    private static final int CAMERA_REQUEST_CODE = 100;
-    private static final int STORAGE_REQUEST_CODE = 200;
 
-    private static final int IMAGE_PICK_CAMERA_CODE = 300;
-    private static final int IMAGE_PICK_GALLERY_CODE = 400;
+    public class AddPostActivity extends AppCompatActivity {
 
-    //permissions array
-    String[] cameraPermissions;
-    String[] storagePermissions;
+        FirebaseAuth firebaseAuth;
+        DatabaseReference userDbRef;
 
-    //views
-    EditText titleEt, descriptionEt;
-    ImageView imageIv;
-    Button uploadBtn;
+        private static final int CAMERA_REQUEST_CODE = 100;
+        private static final int STORAGE_REQUEST_CODE = 200;
 
-    //user info
-    String name, email, uid, dp;
+        private static final int IMAGE_PICK_CAMERA_CODE = 300;
+        private static final int IMAGE_PICK_GALLERY_CODE = 400;
 
-    //image picked will be samed in this url
-    Uri image_url = null;
+        ActionBar actionBar;
 
-    //progress bar
-    ProgressDialog pd;
+        //permissions array
+        String[] cameraPermissions;
+        String[] storagePermissions;
+
+        //views
+        EditText titleEt, descriptionEt;
+        ImageView imageIv;
+        Button uploadBtn;
+
+        //user info
+        String name, email, uid, dp;
+
+        //image picked will be samed in this url
+        Uri image_url = null;
+
+        //progress bar
+        ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
