@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    android:background="#000000"
+    android:backgroundTint="#000000"
+
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/sh1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="Shower Gel 250ml" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="1100Point" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="+" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
+                android:layout_marginBottom="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/btn_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="-" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <Button
+                android:id="@+id/addbtn8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+
+            <Button
+                android:id="@+id/btnexit8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

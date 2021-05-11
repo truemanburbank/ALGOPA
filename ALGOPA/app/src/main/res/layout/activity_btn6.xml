@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:backgroundTint="#000000"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="355dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="#000000"
+            android:backgroundTint="#000000"
+            android:fontFamily="@font/kaushan"
+            android:gravity="top"
+            android:text="Useless gift Shop"
+            android:textColor="#A9A8BC"
+            android:textSize="50dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="131dp"
+            android:background="#000000"
+            android:backgroundTint="#000000"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="176dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/sj1"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="45dp"
+                android:layout_weight="1"
+                android:src="@drawable/hc1"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="110dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="36dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="Jinro large shochu glass" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="110dp"
+                android:layout_height="49dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="65dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="Helicopter propeller hat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp">
+
+            <Button
+                android:id="@+id/btn37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+
+            <Button
+                android:id="@+id/btn38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="65dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="122dp">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/trump1"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="45dp"
+                android:layout_weight="1"
+                android:src="@drawable/sleep1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="59dp">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="110dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="Trump hair socks" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="110dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="65dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="Lying down glasses" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp">
+
+            <Button
+                android:id="@+id/btn39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+
+            <Button
+                android:id="@+id/btn40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="65dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/tb1"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="45dp"
+                android:layout_weight="1"
+                android:src="@drawable/ssm1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="67dp">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="110dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="Hairy wig" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="110dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="65dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/kaushan"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:text="Cute scrubber bed" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+
+            <Button
+                android:id="@+id/btn42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="65dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:textColor="#A9A8BC"
+                android:fontFamily="@font/kaushan"
+                android:text="Purchase" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

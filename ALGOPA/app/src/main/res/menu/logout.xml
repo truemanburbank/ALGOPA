@@ -9,6 +9,12 @@
     </item>
 
     <item
+        android:id="@+id/action_go_shop"
+        android:icon="@drawable/ic_baseline_add_shopping_cart_24"
+        android:title="go shop"
+        app:showAsAction="always"></item>
+
+    <item
         android:id="@+id/action_add_post"
         android:title="Add Post"
         app:showAsAction="always"
