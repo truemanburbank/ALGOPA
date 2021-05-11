@@ -17,8 +17,8 @@ import com.example.ALGOPA.R;
 
 public class OreoNotification extends ContextWrapper {
 
-    private static final String CHANNEL_ID = "com.example.whizzz";
-    private static final String CHANNEL_NAME = "whizzz";
+    private static final String CHANNEL_ID = "com.example.algopa";
+    private static final String CHANNEL_NAME = "algopa";
 
     public NotificationManager notificationManager;
 
