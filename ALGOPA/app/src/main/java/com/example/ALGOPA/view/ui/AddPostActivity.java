@@ -137,14 +137,14 @@ import java.util.HashMap;
 
         //get some info of current user to include in post
         userDbRef = FirebaseDatabase.getInstance().getReference("Users");
-        Query query = userDbRef.orderByChild("email").equalTo(email);
+        Query query = userDbRef.orderByChild("emailId").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    name = ""+ds.child("name").getValue();
-                    email = ""+ds.child("email").getValue();
-                    dp = ""+ds.child("image").getValue();
+                    name = ""+ds.child("username").getValue();
+                    email = ""+ds.child("emailId").getValue();
+                    dp = ""+ds.child("imageUrl").getValue();
                 }
             }
 
