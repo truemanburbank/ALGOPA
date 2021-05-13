@@ -3,6 +3,7 @@ package com.example.ALGOPA.view.adapters;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.ModelPost;
+import com.example.ALGOPA.view.ui.AddPostActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -151,6 +153,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
         if (uid.equals(myUid)){
             //add item in menu
             popupMenu.getMenu().add(Menu.NONE, 0, 0, "Delete");
+            popupMenu.getMenu().add(Menu.NONE, 1, 0, "Edit");
         }
 
         //item click listener
@@ -161,6 +164,14 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
                 if (id == 0){
                     //delete is clicked
                     beginDelete(pId, pImage);
+                }
+                else if (id == 1){
+                    //Edit is clicked
+                    //start AddPostActivity with key "editPost" and the id of the post clicked
+                    Intent intent = new Intent(context, AddPostActivity.class);
+                    intent.putExtra("key", "editPost");
+                    intent.putExtra("editPostId", pId);
+                    context.startActivity(intent);
                 }
                 return false;
             }
