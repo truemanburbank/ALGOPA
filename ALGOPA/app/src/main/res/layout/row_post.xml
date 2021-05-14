@@ -36,6 +36,7 @@
                 <TextView
                     android:id="@+id/uNameTv"
                     android:text="Name"
+                    android:paddingLeft="15dp"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
