@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -47,10 +48,17 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
 
     String myUid;
 
+    private DatabaseReference likesRef; //for likes data node
+    private DatabaseReference postsRef; //reference of posts
+
+    boolean mProcessLike = false;
+
     public AdapterPost(Context context, List<ModelPost> postList) {
         this.context = context;
         this.postList = postList;
         myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        likesRef = FirebaseDatabase.getInstance().getReference().child("Likes");
+        postsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
     }
 
     @NonNull
@@ -73,6 +81,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
         String pDescription = postList.get(position).getpDescr();
         String pImage = postList.get(position).getpImage();
         String pTimestamp = postList.get(position).getpTime();
+        String pLikes = postList.get(position).getpLikes(); //contains total number of likes for a post
 
         //convert timestamp to dd/mm/yyyy hh:mm am/pm
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
@@ -84,6 +93,9 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
         holder.pTimeTv.setText(pTime);
         holder.pTitleTv.setText(pTitle);
         holder.pDescriptionTv.setText(pDescription);
+        holder.pLikeTv.setText(pLikes +" Likes"); //e.g. 100 Likes
+        //set likes for each post
+        setLikes(holder, pId);
 
         //set user dp
         try {
@@ -121,8 +133,37 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
         holder.likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //will implement later
-                Toast.makeText(context, "Like", Toast.LENGTH_SHORT).show();
+                //get total number of likes for the post, whose like button clicked
+                //if currently signed in user has not liked it before
+                //increase value by 1, otherwise decrease value by 1
+                int pLikes = Integer.parseInt(postList.get(position).getpLikes());
+                mProcessLike = true;
+                //fet id of the post clicked
+                String postId = postList.get(position).getpId();
+                likesRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (mProcessLike){
+                            if (snapshot.child(postId).hasChild(myUid)) {
+                                //already liked, so remove like
+                                postsRef.child(postId).child("pLikes").setValue(""+(pLikes -1));
+                                likesRef.child(postId).child(myUid).removeValue();
+                                mProcessLike = false;
+                            }
+                            else {
+                                //not liked, like it
+                                postsRef.child(postId).child("pLikes").setValue(""+(pLikes+1));
+                                likesRef.child(postId).child(myUid).setValue("Liked"); //set any value
+                                mProcessLike = false;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -143,6 +184,36 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
         });
 
 
+    }
+
+    private void setLikes(MyHolder holder, String postKey) {
+        likesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(postKey).hasChild(myUid)) {
+                    //user has liked this post
+                    //To indicate that the post is liked by this(SignedIn) user
+                    //Change drawable left icon of like button
+                    //Change text of like button from "Like" to "Liked"
+                    holder.likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0, 0, 0);
+                    holder.likeBtn.setText("Liked");
+                }
+                else {
+                    //user has not liked this post
+                    //To indicate that the post is not liked by this(SignedIn) user
+                    //Change drawable left icon of like button
+                    //Change text of like button from "Liked" to "Like"
+                    holder.likeBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_white, 0, 0, 0);
+                    holder.likeBtn.setText("Like");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void showMoreOptions(ImageButton moreBtn, String uid, String myUid, String pId, String pImage) {
