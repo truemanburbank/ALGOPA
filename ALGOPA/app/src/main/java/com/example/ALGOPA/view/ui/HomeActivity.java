@@ -21,6 +21,7 @@ import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.Users;
 import com.example.ALGOPA.view.adapters.ViewPagerAdapter;
 import com.example.ALGOPA.view.fragments.ChatFragment;
+import com.example.ALGOPA.view.fragments.GroupChatsFragment;
 import com.example.ALGOPA.view.fragments.MentoringFragment;
 import com.example.ALGOPA.view.fragments.ProfileFragment;
 import com.example.ALGOPA.view.fragments.UserFragment;
@@ -62,10 +63,12 @@ public class HomeActivity extends AppCompatActivity {
     private void setupPagerFragment() {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), ViewPagerAdapter.POSITION_UNCHANGED);
 
-        viewPagerAdapter.addFragment(new ChatFragment(this), "Chats");
+        viewPagerAdapter.addFragment(new ChatFragment(this), "1:1");
         viewPagerAdapter.addFragment(new UserFragment(this), "Users");
+        viewPagerAdapter.addFragment(new GroupChatsFragment(), "Group");
         viewPagerAdapter.addFragment(new MentoringFragment(this), "Mento");
         viewPagerAdapter.addFragment(new ProfileFragment(this), "Profile");
+
 
 
         viewPager.setAdapter(viewPagerAdapter);
