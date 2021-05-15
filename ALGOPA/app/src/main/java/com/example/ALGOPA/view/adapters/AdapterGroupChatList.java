@@ -1,6 +1,7 @@
 package com.example.ALGOPA.view.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.ModelGroupChatList;
+import com.example.ALGOPA.view.ui.GroupChatActivity;
+import com.google.firebase.internal.InternalTokenProvider;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatList.HoderGroupChatList>{
+public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatList.HolderGroupChatList>{
     private Context context;
     private ArrayList<ModelGroupChatList> groupChatLists;
 
@@ -27,15 +30,15 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
 
     @NonNull
     @Override
-    public HoderGroupChatList onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HolderGroupChatList onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //inflate layout
         View view = LayoutInflater.from(context).inflate(R.layout.row_groupchats_list, parent, false);
 
-        return new HoderGroupChatList(view);
+        return new HolderGroupChatList(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HoderGroupChatList holder, int position) {
+    public void onBindViewHolder(@NonNull HolderGroupChatList holder, int position) {
 
         //get data
         ModelGroupChatList model = groupChatLists.get(position);
@@ -56,7 +59,10 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //open group chat
+                Intent intent = new Intent(context, GroupChatActivity.class);
+                intent.putExtra("groupId", groupId);
+                context.startActivity(intent);
             }
         });
 
@@ -68,14 +74,14 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
     }
 
     //view holder class
-    class HoderGroupChatList extends RecyclerView.ViewHolder{
+    class HolderGroupChatList extends RecyclerView.ViewHolder{
 
         //ui views
         private ImageView groupIconIv;
         private TextView groupTitleTv, nameTv, messageTv, timeTv;
 
 
-        public HoderGroupChatList(@NonNull View itemView) {
+        public HolderGroupChatList(@NonNull View itemView) {
             super(itemView);
 
             groupIconIv = itemView.findViewById(R.id.groupIconIv);

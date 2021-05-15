@@ -57,7 +57,7 @@ public class GroupChatsFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                groupChatLists.size();
+                groupChatLists.clear();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     //if current user's uid exists in participants list of group the show that group
                     if (ds.child("Participants").child(firebaseAuth.getUid()).exists()) {
