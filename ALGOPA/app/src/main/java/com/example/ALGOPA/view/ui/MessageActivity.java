@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.Chats;
+import com.example.ALGOPA.services.model.NotificationModel;
 import com.example.ALGOPA.services.model.Users;
 import com.example.ALGOPA.services.notifications.Client;
 import com.example.ALGOPA.services.notifications.Data;
@@ -37,11 +38,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -77,6 +85,7 @@ public class MessageActivity extends AppCompatActivity {
     APIService apiService;
     boolean notify = false;
 
+    private Users destinationUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,10 +118,42 @@ public class MessageActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MessageActivity.this, "Message can't be empty.", Toast.LENGTH_SHORT).show();
                 }
+                sendGcm();
                 et_chat.setText("");
             }
         });
 
+    }
+    void sendGcm(){
+
+        Gson gson = new Gson();
+
+        NotificationModel notificationModel = new NotificationModel();
+        notificationModel.to = destinationUsers.token;
+        notificationModel.notification.title = "보낸이 아이디";
+        notificationModel.notification.text = et_chat.getText().toString();
+
+
+        RequestBody requestBody = RequestBody.create(gson.toJson(notificationModel),MediaType.parse("application/json; charset=utf8"));
+
+        Request request = new Request.Builder()
+                .header("Content-Type","application/json")
+                .addHeader("Authorization","key=AAAA8ZwVF4M:APA91bH6D8hDdyCfKtyYqHqEvQ0BmH4YA5Vbx4waDdjbO2QYAi364Ae7LLG40xEhqyLOVsrZKl_hiHsyiWsxnmatqIshuUPYKy9y-KMKUI0nM7bJxaPSPRHWd8trmEFYO6_N6tZXFPD8")
+                .url("https://fcm.googleapis.com/fcm/send")
+                .post(requestBody)
+                .build();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
+
+            }
+        });
     }
 
     private void openBottomSheetDetailFragment(String username, String imageUrl, String bio) {

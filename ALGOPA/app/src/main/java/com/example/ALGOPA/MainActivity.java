@@ -7,6 +7,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -58,5 +65,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        passPushTokenToServer();
+    }
+    void passPushTokenToServer(){
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //String token = FirebaseInstanceId.getInstance().getToken();
+        Map<String,Object> map = new HashMap<>();
+        //map.put("token",token);
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).updateChildren(map);
+
     }
 }
