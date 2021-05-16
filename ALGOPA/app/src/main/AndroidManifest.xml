@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_applogo_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.GroupChatActivity"></activity>
+        <activity android:name=".view.ui.GroupParticipantAddActivity"></activity>
+        <activity android:name=".view.ui.GroupChatActivity" />
         <activity android:name=".view.ui.AddPostActivity" />
         <activity android:name=".view.ui.GroupCreateActivity" />
         <activity
