@@ -78,7 +78,7 @@ public class Users {
     private String imageUrl;
     private String bio;
 
-    //public String pushToken;
+    public String pushToken;
     public String token;
 
 

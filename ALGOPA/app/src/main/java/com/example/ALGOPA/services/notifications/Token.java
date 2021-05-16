@@ -2,6 +2,7 @@ package com.example.ALGOPA.services.notifications;
 
 public class Token {
     private String token;
+    //public String token;
 
     public Token() {
 

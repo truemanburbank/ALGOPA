@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
     void passPushTokenToServer(){
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        //String token = FirebaseInstanceId.getInstance().getToken();
+        String token = FirebaseInstanceId.getInstance().getToken();
         Map<String,Object> map = new HashMap<>();
-        //map.put("token",token);
+        map.put("pushToken",token);
 
-        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).updateChildren(map);
+        FirebaseDatabase.getInstance().getReference().child("users").child(uid).updateChildren(map);
 
     }
 }

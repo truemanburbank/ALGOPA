@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,11 +28,13 @@ import com.example.ALGOPA.services.notifications.Data;
 import com.example.ALGOPA.services.notifications.MyResponse;
 import com.example.ALGOPA.services.notifications.Sender;
 import com.example.ALGOPA.services.notifications.Token;
+import com.example.ALGOPA.services.repository.FirebaseLoginInstance;
 import com.example.ALGOPA.view.adapters.MessageAdapter;
 import com.example.ALGOPA.view.fragments.APIService;
 import com.example.ALGOPA.view.fragments.BottomSheetProfileDetailUser;
 import com.example.ALGOPA.viewModel.DatabaseViewModel;
 import com.example.ALGOPA.viewModel.LogInViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -85,7 +88,12 @@ public class MessageActivity extends AppCompatActivity {
     APIService apiService;
     boolean notify = false;
 
-    private Users destinationUsers;
+    //private Users destinationUsers;
+    //private Token destinationToken;
+    //private String token;
+    //private LogInViewModel destinationLogInViewModel;
+    //private String newToken;
+    //private FirebaseLoginInstance destinationFirebaseLoginInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,13 +132,23 @@ public class MessageActivity extends AppCompatActivity {
         });
 
     }
+
     void sendGcm(){
 
         Gson gson = new Gson();
 
         NotificationModel notificationModel = new NotificationModel();
-        notificationModel.to = destinationUsers.token;
+
+        //destinationToken.token = "";
+        //notificationModel.to = destinationToken.token;
+        //notificationModel.to = destinationUsers.pushToken;
+        //notificationModel.to = destinationToken.getToken();
+        //Token destinationToken = new Token(newToken);
+        //notificationModel.to = destinationFirebaseLoginInstance.successUpdateToken(newToken);
+
+        notificationModel.to = dismissKeyboard(); //...
         notificationModel.notification.title = "보낸이 아이디";
+        //et_chat = new EditText(context);
         notificationModel.notification.text = et_chat.getText().toString();
 
 
@@ -154,6 +172,13 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public String dismissKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+        return null;
     }
 
     private void openBottomSheetDetailFragment(String username, String imageUrl, String bio) {
