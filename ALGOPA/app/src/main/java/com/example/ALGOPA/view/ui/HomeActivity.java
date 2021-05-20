@@ -2,6 +2,7 @@ package com.example.ALGOPA.view.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -45,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
     String username;
     String imageUrl;
 
+    Menu menu;
+
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
@@ -52,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
         init();
         fetchCurrentUserdata();
@@ -103,6 +107,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+
     private void getUserAuthToSignOut() {
         logInViewModel.getFirebaseAuth();
         logInViewModel.firebaseAuthLiveData.observe(this, new Observer<FirebaseAuth>() {
@@ -115,6 +120,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void onOptionMenuClicked() {
         toolbar.inflateMenu(R.menu.logout);
@@ -145,10 +152,6 @@ public class HomeActivity extends AppCompatActivity {
 
         });
     }
-
-
-
-
 
     private void init() {
 

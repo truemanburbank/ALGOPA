@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.ModelGroupChat;
+import com.example.ALGOPA.services.model.ModelGroupChatList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,10 +30,11 @@ public class AdapterGroupChat extends RecyclerView.Adapter<AdapterGroupChat.Hold
     private static final int MSG_TYPE_LEFT = 0;
     private static final int MSG_TYPE_right = 1;
 
+
     private FirebaseAuth firebaseAuth;
 
     private Context context;
-    private ArrayList<ModelGroupChat> modelGroupChatList;
+    private final ArrayList<ModelGroupChat> modelGroupChatList;
 
     public AdapterGroupChat(Context context, ArrayList<ModelGroupChat> modelGroupChatList) {
         this.context = context;
@@ -84,16 +86,14 @@ public class AdapterGroupChat extends RecyclerView.Adapter<AdapterGroupChat.Hold
     }
 
     private void setUserName(ModelGroupChat model, HolderGroupChat holder) {
-        //get sender info from uid in model
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.orderByChild("uid").equalTo(model.getSender())
+        ref.orderByChild("id").equalTo(model.getSender())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot ds: snapshot.getChildren()){
-                            String name = ""+ds.child("name").getValue();
-
-                            holder.nameTv.setText(name);
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                                String name = "" + ds.child("username").getValue();
+                                holder.nameTv.setText(name);
                         }
                     }
 
@@ -102,6 +102,7 @@ public class AdapterGroupChat extends RecyclerView.Adapter<AdapterGroupChat.Hold
 
                     }
                 });
+
     }
 
     @Override
