@@ -2,7 +2,7 @@ package com.example.ALGOPA.services.model;
 
 public class ModelPost {
     //use same name as we given while uploading post
-    String pId, pTitle, pDescr, pLikes, pImage, pTime, uid, uEmail, uDp, uName;
+    String pId, pTitle, pDescr, pLikes = "0", pImage, pTime, uid, uEmail, uDp, uName;
 
     public ModelPost() {
     }
