@@ -19,4 +19,10 @@
         >
     </item>
 
+    <item
+        android:id="@+id/action_groupinfo"
+        android:title="Group Info"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_groupinfo"/>
+
 </menu>

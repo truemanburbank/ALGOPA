@@ -110,6 +110,7 @@
                 android:drawableStart="@drawable/ic_like_white"
                 android:textColor="@color/white"
                 android:background="@color/black"/>
+            <
             <Button
                 android:id="@+id/commentBtn"
                 android:layout_width="wrap_content"
