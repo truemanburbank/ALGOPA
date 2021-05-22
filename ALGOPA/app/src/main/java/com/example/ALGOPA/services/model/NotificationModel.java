@@ -2,6 +2,8 @@ package com.example.ALGOPA.services.model;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.database.DatabaseReference;
+
 public class NotificationModel {
 
     public String to;

@@ -28,6 +28,7 @@ import com.example.ALGOPA.services.notifications.Data;
 import com.example.ALGOPA.services.notifications.MyResponse;
 import com.example.ALGOPA.services.notifications.Sender;
 import com.example.ALGOPA.services.notifications.Token;
+import com.example.ALGOPA.services.repository.FirebaseInstanceDatabase;
 import com.example.ALGOPA.services.repository.FirebaseLoginInstance;
 import com.example.ALGOPA.view.adapters.MessageAdapter;
 import com.example.ALGOPA.view.fragments.APIService;
@@ -88,12 +89,13 @@ public class MessageActivity extends AppCompatActivity {
     APIService apiService;
     boolean notify = false;
 
-    //private Users destinationUsers;
-    //private Token destinationToken;
+    private Users destinationUsers;
+    private Token destinationToken;
     //private String token;
     //private LogInViewModel destinationLogInViewModel;
     //private String newToken;
     //private FirebaseLoginInstance destinationFirebaseLoginInstance;
+    private FirebaseInstanceDatabase destinationFirebaseInstanceDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,17 +143,24 @@ public class MessageActivity extends AppCompatActivity {
 
         //destinationToken.token = "";
         //notificationModel.to = destinationToken.token;
-        //notificationModel.to = destinationUsers.pushToken;
+        notificationModel.to = destinationUsers.pushToken;
         //notificationModel.to = destinationToken.getToken();
         //Token destinationToken = new Token(newToken);
         //notificationModel.to = destinationFirebaseLoginInstance.successUpdateToken(newToken);
 
-        notificationModel.to = dismissKeyboard(); //...
+
+//        notificationModel.to = destinationToken.token;
+        //notificationModel.to = destinationFirebaseInstanceDatabase.getTokenRef();
+//        if(destinationToken.token !=null) {
+//            notificationModel.to = destinationToken.token;
+//        }
+        //notificationModel.to = destinationUsers.id;
+        //notificationModel.to = dismissKeyboard(); //...
         notificationModel.notification.title = "보낸이 아이디";
         //et_chat = new EditText(context);
         notificationModel.notification.text = et_chat.getText().toString();
 
-
+        //RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf8"),gson.toJson(notificationModel));
         RequestBody requestBody = RequestBody.create(gson.toJson(notificationModel),MediaType.parse("application/json; charset=utf8"));
 
         Request request = new Request.Builder()
