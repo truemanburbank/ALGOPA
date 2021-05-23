@@ -17,7 +17,7 @@ import com.example.ALGOPA.R;
 
 public class OreoNotification extends ContextWrapper {
 
-    private static final String CHANNEL_ID = "com.example.algopa";
+    private static final String CHANNEL_ID = "com.example.ALGOPA";  //algopa
     private static final String CHANNEL_NAME = "algopa";
 
     public NotificationManager notificationManager;
@@ -36,7 +36,9 @@ public class OreoNotification extends ContextWrapper {
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME
                 , NotificationManager.IMPORTANCE_DEFAULT);
 
-        channel.enableLights(false);
+        channel.enableLights(true);  // false -> true
+        channel.setLightColor(R.color.colorPrimary);  // 추가
+        //channel.enableLights(false);
         channel.enableVibration(true);
         channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
 

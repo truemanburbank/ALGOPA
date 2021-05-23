@@ -4,7 +4,7 @@ public class Users {
 
 
 
-    public Users(String id, String username, String emailId, String timestamp, String imageUrl, String bio,String status, String pushToken) {
+    public Users(String id, String username, String emailId, String timestamp, String imageUrl, String bio,String status) {
         this.id = id;
         this.username = username;
         this.emailId = emailId;
@@ -12,7 +12,7 @@ public class Users {
         this.imageUrl = imageUrl;
         this.bio = bio;
         this.status = status;
-        this.pushToken = pushToken;
+//        this.pushToken = pushToken;
     }
 
     public String getId() {
@@ -72,12 +72,11 @@ public class Users {
     }
 
 
-    public String getPushToken() { return pushToken; }
+//    public String getPushToken() { return pushToken; }
+//
+//    public void setPushToken(String pushToken) { this.pushToken = pushToken; }
 
-    public void setPushToken(String pushToken) { this.pushToken = pushToken; }
-
-    public String id;
-    //private String id;
+    private String id;
     private String username;
     private String emailId;
     private String timestamp;
@@ -85,7 +84,7 @@ public class Users {
     private String bio;
 
     public String pushToken;
-    //public String token;
+
 
 
 

@@ -1,6 +1,7 @@
 package com.example.ALGOPA.view.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.ALGOPA.R;
 import com.example.ALGOPA.services.model.Chats;
+//import com.example.ALGOPA.services.model.NotificationModel;
 import com.example.ALGOPA.services.model.NotificationModel;
 import com.example.ALGOPA.services.model.Users;
 import com.example.ALGOPA.services.notifications.Client;
@@ -42,6 +44,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
@@ -90,12 +93,12 @@ public class MessageActivity extends AppCompatActivity {
     boolean notify = false;
 
     private Users destinationUsers;
-    private Token destinationToken;
+//    private Token destinationToken;
     //private String token;
     //private LogInViewModel destinationLogInViewModel;
     //private String newToken;
     //private FirebaseLoginInstance destinationFirebaseLoginInstance;
-    private FirebaseInstanceDatabase destinationFirebaseInstanceDatabase;
+//    private FirebaseInstanceDatabase destinationFirebaseInstanceDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,11 +128,14 @@ public class MessageActivity extends AppCompatActivity {
                 chat = et_chat.getText().toString().trim();
                 if (!chat.equals("")) {
                     addChatInDataBase();
+                    sendGcm();
+                    et_chat.setText("");
                 } else {
                     Toast.makeText(MessageActivity.this, "Message can't be empty.", Toast.LENGTH_SHORT).show();
+                    //sendGcm();
                 }
-                sendGcm();
-                et_chat.setText("");
+                //sendGcm();
+                //et_chat.setText("");
             }
         });
 
@@ -143,19 +149,31 @@ public class MessageActivity extends AppCompatActivity {
 
         //destinationToken.token = "";
         //notificationModel.to = destinationToken.token;
-        notificationModel.to = destinationUsers.pushToken;
-        //notificationModel.to = destinationToken.getToken();
+        //notificationModel.to = String.valueOf(FirebaseMessaging.getInstance().getToken());
         //Token destinationToken = new Token(newToken);
         //notificationModel.to = destinationFirebaseLoginInstance.successUpdateToken(newToken);
 
+        //notificationModel.to = destinationToken.getToken(); // 아무 변화없음
+        //notificationModel.to = destinationToken.token; // 팅김
 
-//        notificationModel.to = destinationToken.token;
         //notificationModel.to = destinationFirebaseInstanceDatabase.getTokenRef();
 //        if(destinationToken.token !=null) {
 //            notificationModel.to = destinationToken.token;
 //        }
         //notificationModel.to = destinationUsers.id;
         //notificationModel.to = dismissKeyboard(); //...
+
+//        if (destinationUsers.pushToken != null) {
+//            notificationModel.to = destinationUsers.pushToken;
+//        }
+
+//        if (destinationUsers.pushToken == null) {
+//            //destinationUsers.pushToken = new destinationUsers.pushToken;
+//            destinationUsers.pushToken = "";
+//            notificationModel.to = destinationUsers.pushToken;
+//            //destinationUsers.pushToken.setMessage("잠시만 기다려주세요");
+//        }
+        //notificationModel.to = destinationUsers.pushToken;
         notificationModel.notification.title = "보낸이 아이디";
         //et_chat = new EditText(context);
         notificationModel.notification.text = et_chat.getText().toString();
@@ -183,12 +201,12 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
-    public String dismissKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert imm != null;
-        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
-        return null;
-    }
+//    public String dismissKeyboard() {
+//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        assert imm != null;
+//        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+//        return null;
+//    }
 
     private void openBottomSheetDetailFragment(String username, String imageUrl, String bio) {
         bottomSheetProfileDetailUser = new BottomSheetProfileDetailUser(username, imageUrl, bio, context);
@@ -304,8 +322,10 @@ public class MessageActivity extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     // Toast.makeText(MessageActivity.this, "Sent.", Toast.LENGTH_SHORT).show();
+                    //sendGcm();
                 } else {
                     Toast.makeText(MessageActivity.this, "Message can't be sent.", Toast.LENGTH_SHORT).show();
+                    //sendGcm();
                 }
             }
         });
@@ -391,6 +411,10 @@ public class MessageActivity extends AppCompatActivity {
         iv_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
             }
         });

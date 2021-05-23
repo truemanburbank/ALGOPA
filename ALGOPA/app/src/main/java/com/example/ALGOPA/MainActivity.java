@@ -4,17 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 
+import com.example.ALGOPA.services.notifications.OreoNotification;
+import com.example.ALGOPA.services.notifications.Token;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,16 +73,21 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        passPushTokenToServer();
-    }
-    void passPushTokenToServer(){
-
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String token = FirebaseInstanceId.getInstance().getToken();
-        Map<String,Object> map = new HashMap<>();
-        map.put("pushToken",token);
-
-        FirebaseDatabase.getInstance().getReference().child("users").child(uid).updateChildren(map);
+        //passPushTokenToServer();
 
     }
+
+
+//    void passPushTokenToServer(){
+//
+//        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        String token = String.valueOf(FirebaseMessaging.getInstance().getToken());
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("pushToken",token);
+//
+//        FirebaseDatabase.getInstance().getReference().child("Tokens").child(uid).updateChildren(map);
+//        //FirebaseDatabase.getInstance().getReference("Users").child(uid).setValue(token);
+//
+//
+//    }
 }

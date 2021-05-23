@@ -30,6 +30,12 @@ import com.example.ALGOPA.viewModel.LogInViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
         fetchCurrentUserdata();
         setupPagerFragment();
         onOptionMenuClicked();
+        passPushTokenToServer();
 
     }
 
@@ -68,7 +75,6 @@ public class HomeActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new GroupChatsFragment(), "Group");
         viewPagerAdapter.addFragment(new MentoringFragment(this), "Mento");
         viewPagerAdapter.addFragment(new ProfileFragment(this), "Profile");
-
 
 
         viewPager.setAdapter(viewPagerAdapter);
@@ -137,17 +143,13 @@ public class HomeActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.action_go_shop) {
                     startActivity(new Intent(HomeActivity.this, MainActivity.class));
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
             }
 
         });
     }
-
-
-
 
 
     private void init() {
@@ -178,7 +180,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void status(String status){
+    private void status(String status) {
         databaseViewModel.addStatusInDatabase("status", status);
     }
 
@@ -192,5 +194,16 @@ public class HomeActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         status("offline");
+    }
+
+    void passPushTokenToServer() {
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String token = FirebaseInstanceId.getInstance().getToken();
+        //String token = String.valueOf(FirebaseMessaging.getInstance().getToken());
+        Map<String, Object> map = new HashMap<>();
+        map.put("pushToken", token);
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).updateChildren(map);
     }
 }
