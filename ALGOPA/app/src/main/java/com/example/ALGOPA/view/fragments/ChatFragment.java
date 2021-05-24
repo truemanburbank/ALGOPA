@@ -69,7 +69,7 @@ public class ChatFragment extends Fragment {
 
     private void fetchAllChat() {
         databaseViewModel.fetchingUserDataCurrent();
-        databaseViewModel.fetchUserCurrentData.observe(this, new Observer<DataSnapshot>() {
+        databaseViewModel.fetchUserCurrentData.observe(getViewLifecycleOwner(), new Observer<DataSnapshot>() {
             @Override
             public void onChanged(DataSnapshot dataSnapshot) {
                 Users users = dataSnapshot.getValue(Users.class);
@@ -79,7 +79,7 @@ public class ChatFragment extends Fragment {
         });
 
         databaseViewModel.getChaListUserDataSnapshot(currentUserId);
-        databaseViewModel.getChaListUserDataSnapshot.observe(this, new Observer<DataSnapshot>() {
+        databaseViewModel.getChaListUserDataSnapshot.observe(getViewLifecycleOwner(), new Observer<DataSnapshot>() {
             @Override
             public void onChanged(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
