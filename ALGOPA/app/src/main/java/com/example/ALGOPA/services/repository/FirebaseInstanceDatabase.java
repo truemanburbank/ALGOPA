@@ -358,6 +358,7 @@ public class FirebaseInstanceDatabase {
         hashMap.put("imageUrl", imageUrl);
         hashMap.put("bio", "Hey there!");
         hashMap.put("status", "offline");
+        hashMap.put("member", "Normal member");
         hashMap.put("search", userName.toLowerCase());
 
         instance.getReference("Users").child(userId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
