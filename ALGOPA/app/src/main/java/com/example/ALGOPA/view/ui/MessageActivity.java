@@ -93,12 +93,7 @@ public class MessageActivity extends AppCompatActivity {
     boolean notify = false;
 
     private Users destinationUsers;
-//    private Token destinationToken;
-    //private String token;
-    //private LogInViewModel destinationLogInViewModel;
-    //private String newToken;
-    //private FirebaseLoginInstance destinationFirebaseLoginInstance;
-//    private FirebaseInstanceDatabase destinationFirebaseInstanceDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,14 +123,11 @@ public class MessageActivity extends AppCompatActivity {
                 chat = et_chat.getText().toString().trim();
                 if (!chat.equals("")) {
                     addChatInDataBase();
-                    sendGcm();
-                    et_chat.setText("");
                 } else {
                     Toast.makeText(MessageActivity.this, "Message can't be empty.", Toast.LENGTH_SHORT).show();
-                    //sendGcm();
                 }
-                //sendGcm();
-                //et_chat.setText("");
+                sendGcm();
+                et_chat.setText("");
             }
         });
 
@@ -147,35 +139,8 @@ public class MessageActivity extends AppCompatActivity {
 
         NotificationModel notificationModel = new NotificationModel();
 
-        //destinationToken.token = "";
-        //notificationModel.to = destinationToken.token;
-        //notificationModel.to = String.valueOf(FirebaseMessaging.getInstance().getToken());
-        //Token destinationToken = new Token(newToken);
-        //notificationModel.to = destinationFirebaseLoginInstance.successUpdateToken(newToken);
-
-        //notificationModel.to = destinationToken.getToken(); // 아무 변화없음
-        //notificationModel.to = destinationToken.token; // 팅김
-
-        //notificationModel.to = destinationFirebaseInstanceDatabase.getTokenRef();
-//        if(destinationToken.token !=null) {
-//            notificationModel.to = destinationToken.token;
-//        }
-        //notificationModel.to = destinationUsers.id;
-        //notificationModel.to = dismissKeyboard(); //...
-
-//        if (destinationUsers.pushToken != null) {
-//            notificationModel.to = destinationUsers.pushToken;
-//        }
-
-//        if (destinationUsers.pushToken == null) {
-//            //destinationUsers.pushToken = new destinationUsers.pushToken;
-//            destinationUsers.pushToken = "";
-//            notificationModel.to = destinationUsers.pushToken;
-//            //destinationUsers.pushToken.setMessage("잠시만 기다려주세요");
-//        }
-        //notificationModel.to = destinationUsers.pushToken;
+        notificationModel.to = destinationUsers.pushToken;
         notificationModel.notification.title = "보낸이 아이디";
-        //et_chat = new EditText(context);
         notificationModel.notification.text = et_chat.getText().toString();
 
         //RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf8"),gson.toJson(notificationModel));
@@ -200,13 +165,6 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
-
-//    public String dismissKeyboard() {
-//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        assert imm != null;
-//        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
-//        return null;
-//    }
 
     private void openBottomSheetDetailFragment(String username, String imageUrl, String bio) {
         bottomSheetProfileDetailUser = new BottomSheetProfileDetailUser(username, imageUrl, bio, context);
@@ -322,10 +280,8 @@ public class MessageActivity extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     // Toast.makeText(MessageActivity.this, "Sent.", Toast.LENGTH_SHORT).show();
-                    //sendGcm();
                 } else {
                     Toast.makeText(MessageActivity.this, "Message can't be sent.", Toast.LENGTH_SHORT).show();
-                    //sendGcm();
                 }
             }
         });

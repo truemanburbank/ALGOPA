@@ -106,7 +106,6 @@ public class MyFirebaseMessaging extends FirebaseMessagingService implements Lif
 
         OreoNotification oreoNotification = new OreoNotification(this);
         Notification.Builder builder = oreoNotification.getOreoNotification(title, body, pendingIntent, defaultSound, icon);
-        //Notification.Builder builder = oreoNotification.getOreoNotification(title, body);  // 위에 문장 수정
 
 
         int i = 0;
@@ -138,14 +137,14 @@ public class MyFirebaseMessaging extends FirebaseMessagingService implements Lif
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         assert icon != null;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "com.example.ALGOPA")
-                .setSmallIcon(R.mipmap.ic_launcher) // 알림 왼쪽 위에 보여지는 작은 아이콘, 필수 콘텐츠
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
                         R.mipmap.ic_launcher))
-                .setContentTitle(title)  //제목
-                .setContentText(body)  //본문
-                .setAutoCancel(true) //알림 자동 삭제, false로 설정하면 알림을 클릭해도 사라지지 않음
+                .setContentTitle(title)
+                .setContentText(body)
+                .setAutoCancel(true)
                 .setSound(defaultSound)
-                .setContentIntent(pendingIntent);  //pendingIntent 지정
+                .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -159,8 +158,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService implements Lif
 
 
 
-//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-//        notificationManager.notify(notificationId, builder.build());
+
     }
 
     @NonNull
