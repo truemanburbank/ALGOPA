@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +30,12 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -52,7 +59,6 @@ public class ProfileFragment extends Fragment {
     ImageView btn_profile_image_change;
     ImageView btn_save_edit_user_name;
     TextView tv_profile_fragment_bio;
-
     String username;
     String imageUrl;
     String userBio;
@@ -62,6 +68,13 @@ public class ProfileFragment extends Fragment {
     @SuppressWarnings("rawtypes")
     private StorageTask uploadImageTask;
     private StorageReference fileReference;
+    Users users;
+    RadioButton normal, pro;
+    private FirebaseAuth firebaseAuth;
+
+    FirebaseDatabase database;
+    DatabaseReference databaseReference;
+    int i =0;
 
     Boolean isUsername;
 
@@ -76,12 +89,14 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         init(view);
         fetchCurrentUserdata();
+        Radio(view);
+
         return view;
     }
 
     private void fetchCurrentUserdata() {
         databaseViewModel.fetchingUserDataCurrent();
-        databaseViewModel.fetchUserCurrentData.observe(this, new Observer<DataSnapshot>() {
+        databaseViewModel.fetchUserCurrentData.observe(getViewLifecycleOwner(), new Observer<DataSnapshot>() {
             @Override
             public void onChanged(DataSnapshot dataSnapshot) {
                 Users user = dataSnapshot.getValue(Users.class);
@@ -174,7 +189,7 @@ public class ProfileFragment extends Fragment {
 
             Bitmap bmp = null;
             try {
-                bmp = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(getActivity()).getContentResolver(), data.getData());
+                bmp = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), data.getData());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -201,7 +216,7 @@ public class ProfileFragment extends Fragment {
 
     private void init(View view) {
         databaseViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-                .getInstance(Objects.requireNonNull(getActivity()).getApplication()))
+                .getInstance(requireActivity().getApplication()))
                 .get(DatabaseViewModel.class);
 
         tv_currentUserName_profile_fragment = view.findViewById(R.id.tv_profile_fragment_username);
@@ -209,6 +224,8 @@ public class ProfileFragment extends Fragment {
         btn_profile_image_change = view.findViewById(R.id.btn_profile_image_change);
         btn_save_edit_user_name = view.findViewById(R.id.btn_save_edit_username);
         tv_profile_fragment_bio = view.findViewById(R.id.tv_profile_fragment_bio);
+        normal = view.findViewById(R.id.normal_member);
+        pro = view.findViewById(R.id.pro_member);
 
         btn_profile_image_change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,5 +260,69 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    private void Radio(View view) {
+        RadioGroup radios = (RadioGroup)view.findViewById(R.id.radios);
 
+        radios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.normal_member) {
+                    addNormal();
+                }
+                else if (checkedId == R.id.pro_member) {
+                    addPro();
+                }
+            }
+        });
+    }
+
+    public void addNormal() {
+        users = new Users();
+        databaseReference = database.getInstance().getReference().child("Users");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    i = (int) snapshot.getChildrenCount();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        if (normal.isChecked()) {
+            users.setMember("Normal Member");
+            databaseReference.child("Users")
+                    .child(firebaseAuth.getUid()).child("member").setValue(users);
+        }
+    }
+
+    public void addPro() {
+        users = new Users();
+        databaseReference = database.getInstance().getReference().child("Users");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    i = (int)snapshot.getChildrenCount();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        if (pro.isChecked()) {
+            users.setMember("Pro Member");
+            databaseReference.child("Users")
+                    .child(firebaseAuth.getUid()).child("member").setValue(users);
+        }
+    }
 }

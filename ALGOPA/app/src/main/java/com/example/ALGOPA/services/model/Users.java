@@ -13,8 +13,12 @@ public class Users {
         this.bio = bio;
         this.status = status;
         this.member = member;
-
     }
+
+    public Users(String member) {
+        this.member = member;
+    }
+
 
     public String getId() {
         return id;

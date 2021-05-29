@@ -154,33 +154,37 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/card_view"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
+    <RadioGroup
+        android:id="@+id/radios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
-        <CheckBox
+        <RadioButton
+            android:id="@+id/normal_member"
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/kaushan"
             android:gravity="center"
-            android:text="Nomal Member"
+            android:text="Normal Member"
             android:textColor="@color/grey"
             android:textSize="20sp" />
 
-        <CheckBox
+        <RadioButton
+            android:id="@+id/pro_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/kaushan"
             android:gravity="center"
             android:text="professional Member"
             android:textColor="@color/grey"
             android:textSize="20sp" />
-
-
+    </RadioGroup>
     </LinearLayout>
-
-
 </RelativeLayout>
