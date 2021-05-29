@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -30,7 +31,12 @@ import com.example.ALGOPA.viewModel.DatabaseViewModel;
 import com.example.ALGOPA.viewModel.LogInViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -38,6 +44,11 @@ public class HomeActivity extends AppCompatActivity {
     LogInViewModel logInViewModel;
     Toolbar toolbar;
     DatabaseViewModel databaseViewModel;
+    FirebaseAuth firebaseAuth;
+    DatabaseReference mDatabase;
+    Users users;
+    FirebaseDatabase database;
+    FirebaseUser currentFirebaseUser;
 
     LinearLayout linearLayout;
     ProgressBar progressBar;
@@ -45,6 +56,8 @@ public class HomeActivity extends AppCompatActivity {
     CircleImageView profileImage;
     String username;
     String imageUrl;
+    String myMember;
+    String userId;
 
     Menu menu;
 
@@ -60,8 +73,8 @@ public class HomeActivity extends AppCompatActivity {
         init();
         fetchCurrentUserdata();
         setupPagerFragment();
+        loadUserMember();
         onOptionMenuClicked();
-
     }
 
     private void setupPagerFragment() {
@@ -128,30 +141,75 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.log_out_home) {
-                    getUserAuthToSignOut();
-                    Toast.makeText(HomeActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                if (item.getItemId() == R.id.action_create_group) {
-                    startActivity(new Intent(HomeActivity.this, GroupCreateActivity.class));
-                    return true;
-                }
-                if (item.getItemId() == R.id.action_add_post) {
-                    startActivity(new Intent(HomeActivity.this, AddPostActivity.class));
-                    return true;
-                }
-                if (item.getItemId() == R.id.action_go_shop) {
-                    startActivity(new Intent(HomeActivity.this, MainActivity.class));
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
 
+                if (myMember.equals("pro member")) {
+                    if (item.getItemId() == R.id.log_out_home) {
+                        getUserAuthToSignOut();
+                        Toast.makeText(HomeActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    if (item.getItemId() == R.id.action_create_group) {
+                        startActivity(new Intent(HomeActivity.this, GroupCreateActivity.class));
+                        return true;
+                    }
+                    if (item.getItemId() == R.id.action_add_post) {
+                        startActivity(new Intent(HomeActivity.this, AddPostActivity.class));
+                        return true;
+                    }
+                    if (item.getItemId() == R.id.action_go_shop) {
+                        startActivity(new Intent(HomeActivity.this, MainActivity.class));
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+                else if (myMember.equals("normal member")) {
+                    if (item.getItemId() == R.id.log_out_home) {
+                        getUserAuthToSignOut();
+                        Toast.makeText(HomeActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    if (item.getItemId() == R.id.action_create_group) {
+                        Toast.makeText(HomeActivity.this, "전문가 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    if (item.getItemId() == R.id.action_add_post) {
+                        Toast.makeText(HomeActivity.this, "전문가 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    if (item.getItemId() == R.id.action_go_shop) {
+                        startActivity(new Intent(HomeActivity.this, MainActivity.class));
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                else return false;
+            } //
         });
     }
+
+    private void loadUserMember() {
+
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        assert userId != null;
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        databaseReference.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                myMember = (String) snapshot.child("member").getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     private void init() {
 
