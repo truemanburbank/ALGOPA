@@ -104,10 +104,13 @@ public class ChatFragment extends Fragment {
                     Users users = dataSnapshot1.getValue(Users.class);
                     for (ChatList chatList : userList) {
                         assert users != null;
-                        if (users.getId().equals(chatList.getId())) {
-                            if(!mUsers.contains(users))
-                            mUsers.add(users);
+                        try {
+                            if (users.getId().equals(chatList.getId())) {
+                                if(!mUsers.contains(users))
+                                    mUsers.add(users);
+                            }
                         }
+                        catch (Exception e) {}
                     }
                 }
                 if(mUsers.size()<1){
