@@ -106,7 +106,8 @@ public class ChatFragment extends Fragment {
                         assert users != null;
                         try {
                             if (users.getId().equals(chatList.getId())) {
-                                if (!mUsers.contains(users))
+
+                                if(!mUsers.contains(users))
                                     mUsers.add(users);
                             }
                         }

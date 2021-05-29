@@ -16,6 +16,7 @@ public class Users {
 
     }
 
+
     public Users(String id, String username, String emailId, String timestamp, String imageUrl, String bio,String status) {
         this.id = id;
         this.username = username;
@@ -94,5 +95,6 @@ public class Users {
     public void setMember(String member) {
         this.member = member;
     }
+
 
 }
