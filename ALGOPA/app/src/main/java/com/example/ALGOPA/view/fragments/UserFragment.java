@@ -23,7 +23,6 @@ import com.example.ALGOPA.viewModel.DatabaseViewModel;
 import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class UserFragment extends Fragment {
     private Context context;
@@ -51,7 +50,7 @@ public class UserFragment extends Fragment {
 
     private void fetchingAllUserNAme() {
         databaseViewModel.fetchingUserDataCurrent();
-        databaseViewModel.fetchUserCurrentData.observe(this, new Observer<DataSnapshot>() {
+        databaseViewModel.fetchUserCurrentData.observe(getViewLifecycleOwner(), new Observer<DataSnapshot>() {
             @Override
             public void onChanged(DataSnapshot dataSnapshot) {
                 Users users = dataSnapshot.getValue(Users.class);
@@ -61,7 +60,7 @@ public class UserFragment extends Fragment {
         });
 
         databaseViewModel.fetchUserByNameAll();
-        databaseViewModel.fetchUserNames.observe(this, new Observer<DataSnapshot>() {
+        databaseViewModel.fetchUserNames.observe(getViewLifecycleOwner(), new Observer<DataSnapshot>() {
             @Override
             public void onChanged(DataSnapshot dataSnapshot) {
                 if (et_search.getText().toString().equals("")) {
@@ -70,6 +69,7 @@ public class UserFragment extends Fragment {
                         Users user = snapshot.getValue(Users.class);
 
                         assert user != null;
+
                         if (!(user.getEmailId() == null)
                         ) {
                             if (!currentUserId.equals(user.getId())) {
@@ -89,7 +89,7 @@ public class UserFragment extends Fragment {
 
     private void init(View view) {
         databaseViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-                .getInstance(Objects.requireNonNull(getActivity()).getApplication()))
+                .getInstance(requireActivity().getApplication()))
                 .get(DatabaseViewModel.class);
 
         recyclerView = view.findViewById(R.id.user_list_recycle_view);

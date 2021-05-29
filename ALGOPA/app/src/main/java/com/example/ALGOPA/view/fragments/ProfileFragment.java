@@ -52,7 +52,6 @@ public class ProfileFragment extends Fragment {
     ImageView btn_profile_image_change;
     ImageView btn_save_edit_user_name;
     TextView tv_profile_fragment_bio;
-
     String username;
     String imageUrl;
     String userBio;
@@ -76,12 +75,13 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         init(view);
         fetchCurrentUserdata();
+
         return view;
     }
 
     private void fetchCurrentUserdata() {
         databaseViewModel.fetchingUserDataCurrent();
-        databaseViewModel.fetchUserCurrentData.observe(this, new Observer<DataSnapshot>() {
+        databaseViewModel.fetchUserCurrentData.observe(getViewLifecycleOwner(), new Observer<DataSnapshot>() {
             @Override
             public void onChanged(DataSnapshot dataSnapshot) {
                 Users user = dataSnapshot.getValue(Users.class);
@@ -174,7 +174,7 @@ public class ProfileFragment extends Fragment {
 
             Bitmap bmp = null;
             try {
-                bmp = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(getActivity()).getContentResolver(), data.getData());
+                bmp = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), data.getData());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -201,7 +201,7 @@ public class ProfileFragment extends Fragment {
 
     private void init(View view) {
         databaseViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-                .getInstance(Objects.requireNonNull(getActivity()).getApplication()))
+                .getInstance(requireActivity().getApplication()))
                 .get(DatabaseViewModel.class);
 
         tv_currentUserName_profile_fragment = view.findViewById(R.id.tv_profile_fragment_username);
@@ -242,6 +242,4 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
-
 }

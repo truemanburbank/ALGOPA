@@ -358,7 +358,35 @@ public class FirebaseInstanceDatabase {
         hashMap.put("imageUrl", imageUrl);
         hashMap.put("bio", "Hey there!");
         hashMap.put("status", "offline");
-        hashMap.put("member", "N member");
+        hashMap.put("search", userName.toLowerCase());
+
+        instance.getReference("Users").child(userId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                successAddUserDb.setValue(true);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                successAddUserDb.setValue(false);
+            }
+        });
+
+        return successAddUserDb;
+    }
+
+    public MutableLiveData<Boolean> addUser_memberInDatabase(String userId, String userName, String emailId, String timestamp, String imageUrl, String member) {
+        final MutableLiveData<Boolean> successAddUserDb = new MutableLiveData<>();
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("id", userId);
+        hashMap.put("username", userName);
+        hashMap.put("emailId", emailId);
+        hashMap.put("timestamp", timestamp);
+        hashMap.put("imageUrl", imageUrl);
+        hashMap.put("bio", "Hey there!");
+        hashMap.put("status", "offline");
+        hashMap.put("member", member);
         hashMap.put("search", userName.toLowerCase());
 
         instance.getReference("Users").child(userId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

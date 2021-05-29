@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +22,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ALGOPA.R;
+import com.example.ALGOPA.services.model.Users;
 import com.example.ALGOPA.viewModel.DatabaseViewModel;
 import com.example.ALGOPA.viewModel.SignInViewModel;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -48,8 +54,16 @@ public class SignupActivity extends AppCompatActivity {
     String userId;
     String imageUrl;
     String timeStamp;
+    String member;
     FirebaseUser currentUser;
     FrameLayout progressBarSignInFrame;
+    Users users;
+    RadioButton normal, pro;
+    private FirebaseAuth firebaseAuth;
+
+    FirebaseDatabase database;
+    DatabaseReference databaseReference;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         init();
         listeners();
+
         final Spinner spin1 = (Spinner)findViewById(R.id.spinner);
         final Spinner spin2 = (Spinner)findViewById(R.id.spinner2);
 
@@ -318,6 +333,18 @@ public class SignupActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        RadioGroup radios = findViewById(R.id.radios);
+        radios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.normal_member) {
+                    member = "normal member";
+                } else if (checkedId == R.id.pro_member) {
+                    member = "pro member";
+                }
+            }
+        });
     }
 
     public void signInUsers() {
@@ -351,7 +378,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 } else {
                     getUserSession();
-                    addUserInDatabase(userName, emailId, userId);
+                    addUserInDatabase(userName, emailId, member);
                     Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
@@ -361,12 +388,13 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
-    private void addUserInDatabase(String userName, String email, String idUser) {
+    private void addUserInDatabase(String userName, String email, String userMember) {
         long tsLong = System.currentTimeMillis();
         timeStamp = Long.toString(tsLong);
         imageUrl = "default";
         userId = currentUser.getUid();
-        databaseViewModel.addUserDatabase(userId, userName, email, timeStamp, imageUrl);
+        assert userMember != null;
+        databaseViewModel.addUserInDatabase(userId, userName, email, timeStamp, imageUrl, userMember);
         databaseViewModel.successAddUserDb.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -411,5 +439,8 @@ public class SignupActivity extends AppCompatActivity {
                 .getInstance(getApplication()))
                 .get(DatabaseViewModel.class);
         progressBarSignInFrame = findViewById(R.id.progress_bar_signIn);
+        normal = findViewById(R.id.normal_member);
+        pro = findViewById(R.id.pro_member);
     }
+
 }

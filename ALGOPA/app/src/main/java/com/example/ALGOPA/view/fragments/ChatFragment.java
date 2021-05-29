@@ -106,12 +106,14 @@ public class ChatFragment extends Fragment {
                         assert users != null;
                         try {
                             if (users.getId().equals(chatList.getId())) {
+
                                 if(!mUsers.contains(users))
                                     mUsers.add(users);
                             }
                         }
                         catch (Exception e) {}
                     }
+
                 }
                 if(mUsers.size()<1){
                     relative_layout_chat_fragment.setVisibility(View.VISIBLE);
