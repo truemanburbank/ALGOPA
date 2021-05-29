@@ -139,7 +139,7 @@ public class MessageActivity extends AppCompatActivity {
 
         NotificationModel notificationModel = new NotificationModel();
 
-        notificationModel.to = destinationUsers.pushToken;
+        //notificationModel.to = destinationUsers.pushToken;
         notificationModel.notification.title = "보낸이 아이디";
         notificationModel.notification.text = et_chat.getText().toString();
 
