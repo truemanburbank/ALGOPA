@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +31,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -74,7 +71,7 @@ public class ProfileFragment extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference databaseReference;
-    int i =0;
+    int i = 0;
 
     Boolean isUsername;
 
@@ -89,7 +86,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         init(view);
         fetchCurrentUserdata();
-        Radio(view);
+        //Radio(view);
 
         return view;
     }
@@ -259,17 +256,17 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+    /*
 
     private void Radio(View view) {
-        RadioGroup radios = (RadioGroup)view.findViewById(R.id.radios);
+        RadioGroup radios = (RadioGroup) view.findViewById(R.id.radios);
 
         radios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.normal_member) {
                     addNormal();
-                }
-                else if (checkedId == R.id.pro_member) {
+                } else if (checkedId == R.id.pro_member) {
                     addPro();
                 }
             }
@@ -296,8 +293,7 @@ public class ProfileFragment extends Fragment {
 
         if (normal.isChecked()) {
             users.setMember("Normal Member");
-            databaseReference.child("Users")
-                    .child(firebaseAuth.getUid()).child("member").setValue(users);
+            databaseReference.child("Users").child("member").setValue(users);
         }
     }
 
@@ -309,7 +305,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    i = (int)snapshot.getChildrenCount();
+                    i = (int) snapshot.getChildrenCount();
                 }
             }
 
@@ -321,8 +317,7 @@ public class ProfileFragment extends Fragment {
 
         if (pro.isChecked()) {
             users.setMember("Pro Member");
-            databaseReference.child("Users")
-                    .child(firebaseAuth.getUid()).child("member").setValue(users);
+            databaseReference.child("Users").child("member").setValue(users);
         }
-    }
+    } */
 }

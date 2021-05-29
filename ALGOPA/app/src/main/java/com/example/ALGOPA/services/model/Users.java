@@ -2,9 +2,20 @@ package com.example.ALGOPA.services.model;
 
 public class Users {
 
+    private String id;
+    private String username;
+    private String emailId;
+    private String timestamp;
+    private String imageUrl;
+    private String bio;
+    private String status;
 
 
-    public Users(String id, String username, String emailId, String timestamp, String imageUrl, String bio,String status, String member) {
+    public Users() {
+
+    }
+
+    public Users(String id, String username, String emailId, String timestamp, String imageUrl, String bio,String status) {
         this.id = id;
         this.username = username;
         this.emailId = emailId;
@@ -12,11 +23,6 @@ public class Users {
         this.imageUrl = imageUrl;
         this.bio = bio;
         this.status = status;
-        this.member = member;
-    }
-
-    public Users(String member) {
-        this.member = member;
     }
 
 
@@ -75,33 +81,5 @@ public class Users {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public String getMember() {
-        return member;
-    }
-
-    public void setMember(String member) {
-        this.status = member;
-    }
-
-
-
-    private String id;
-    private String username;
-    private String emailId;
-    private String timestamp;
-    private String imageUrl;
-    private String bio;
-    private String member;
-    private String status;
-
-
-
-    public Users() {
-
-    }
-
-
-
 
 }
