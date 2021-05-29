@@ -9,6 +9,7 @@ public class Users {
     private String imageUrl;
     private String bio;
     private String status;
+    private String member;
 
 
     public Users() {
@@ -23,6 +24,10 @@ public class Users {
         this.imageUrl = imageUrl;
         this.bio = bio;
         this.status = status;
+    }
+
+    public Users(String member) {
+        this.member = member;
     }
 
 
@@ -80,6 +85,14 @@ public class Users {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getMember() {
+        return member;
+    }
+
+    public void setMember(String member) {
+        this.member = member;
     }
 
 }
