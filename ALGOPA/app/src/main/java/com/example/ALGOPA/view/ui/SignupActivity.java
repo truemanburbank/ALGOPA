@@ -70,7 +70,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         init();
-        listeners();
 
         final Spinner spin1 = (Spinner)findViewById(R.id.spinner);
         final Spinner spin2 = (Spinner)findViewById(R.id.spinner2);
@@ -258,9 +257,9 @@ public class SignupActivity extends AppCompatActivity {
 
                         }
                     });
-                }else if (adspin1.getItem(i).equals("해양대학")){
+                }else if (adspin1.getItem(i).equals("해양대학")) {
                     choice_do = "해양대학";
-                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this,R.array.spinner_do_Department_of_Oceanography, android.R.layout.simple_spinner_dropdown_item);
+                    adspin2 = ArrayAdapter.createFromResource(SignupActivity.this, R.array.spinner_do_Department_of_Oceanography, android.R.layout.simple_spinner_dropdown_item);
                     adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spin2.setAdapter(adspin2);
                     spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -283,7 +282,9 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
+        listeners();
     }
+
 
     private void listeners() {
 
@@ -378,7 +379,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 } else {
                     getUserSession();
-                    addUserInDatabase(userName, emailId, member);
+                    addUserInDatabase(userName, emailId, member, choice_se);
                     Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
@@ -388,13 +389,14 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
-    private void addUserInDatabase(String userName, String email, String userMember) {
+    private void addUserInDatabase(String userName, String email, String userMember, String choice) {
         long tsLong = System.currentTimeMillis();
         timeStamp = Long.toString(tsLong);
         imageUrl = "default";
+        choice = choice_se;
         userId = currentUser.getUid();
         assert userMember != null;
-        databaseViewModel.addUserInDatabase(userId, userName, email, timeStamp, imageUrl, userMember);
+        databaseViewModel.addUserInDatabase(userId, userName, email, timeStamp, imageUrl, userMember, choice);
         databaseViewModel.successAddUserDb.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {

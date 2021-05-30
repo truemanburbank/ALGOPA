@@ -375,7 +375,7 @@ public class FirebaseInstanceDatabase {
         return successAddUserDb;
     }
 
-    public MutableLiveData<Boolean> addUser_memberInDatabase(String userId, String userName, String emailId, String timestamp, String imageUrl, String member) {
+    public MutableLiveData<Boolean> addUser_memberInDatabase(String userId, String userName, String emailId, String timestamp, String imageUrl, String member, String choice) {
         final MutableLiveData<Boolean> successAddUserDb = new MutableLiveData<>();
 
         HashMap<String, String> hashMap = new HashMap<>();
@@ -385,6 +385,7 @@ public class FirebaseInstanceDatabase {
         hashMap.put("timestamp", timestamp);
         hashMap.put("imageUrl", imageUrl);
         hashMap.put("bio", "Hey there!");
+        hashMap.put("department", choice);
         hashMap.put("status", "offline");
         hashMap.put("member", member);
         hashMap.put("search", userName.toLowerCase());
