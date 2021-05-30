@@ -24,6 +24,7 @@
         android:textColor="@color/black"
         android:textColorHint="#797B7E"
         android:textSize="15sp"
+        android:privateImeOptions="defaultInputmode=korean"
         android:drawableEnd="@drawable/ic_baseline_search_24"/>
 
     <androidx.recyclerview.widget.RecyclerView

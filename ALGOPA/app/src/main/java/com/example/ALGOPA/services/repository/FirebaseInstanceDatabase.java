@@ -388,7 +388,7 @@ public class FirebaseInstanceDatabase {
         hashMap.put("department", choice);
         hashMap.put("status", "offline");
         hashMap.put("member", member);
-        hashMap.put("search", userName.toLowerCase());
+        hashMap.put("search", choice.toLowerCase());
 
         instance.getReference("Users").child(userId).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
