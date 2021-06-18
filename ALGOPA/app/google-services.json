@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1037705746307:android:c9cecc2a6084c99b4748b6",
         "android_client_info": {
-          "package_name": "com.algopa"
+          "package_name": "com.example.ALGOPA"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1037705746307-lgrp2ltmrlnifk257f6t2o7sk4serrrr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.algopa",
+            "package_name": "com.example.ALGOPA",
             "certificate_hash": "8d80c0592671837d311d11ad7e175fe89f947fae"
           }
         },
@@ -47,7 +47,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1037705746307:android:d86ed58a84c3ae464748b6",
         "android_client_info": {
-          "package_name": "com.example.algopa"
+          "package_name": "com.example.ALGOPA"
         }
       },
       "oauth_client": [
@@ -76,7 +76,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1037705746307:android:c2e4398b53c6266d4748b6",
         "android_client_info": {
-          "package_name": "com.project.algopa"
+          "package_name": "com.example.ALGOPA"
         }
       },
       "oauth_client": [
@@ -84,7 +84,7 @@
           "client_id": "1037705746307-2e099lpaju62kg9omt288iinp8o18a9t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.project.algopa",
+            "package_name": "com.example.ALGOPA",
             "certificate_hash": "fdc1160a9a6a3cc7bdb6b3f8462bc185b0b93719"
           }
         },
@@ -113,7 +113,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1037705746307:android:06d50260b623b9994748b6",
         "android_client_info": {
-          "package_name": "com.swp.algopa"
+          "package_name": "com.example.ALGOPA"
         }
       },
       "oauth_client": [
@@ -121,7 +121,7 @@
           "client_id": "1037705746307-p1sajb5j13kah2h0k3mq5vfap5ipd18b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.swp.algopa",
+            "package_name": "com.example.ALGOPA",
             "certificate_hash": "fdc1160a9a6a3cc7bdb6b3f8462bc185b0b93719"
           }
         },
